@@ -1,0 +1,47 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix ex: <http://example.org/schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# TriplesMap for the Department table
+<#DepartmentTriplesMap>
+    rr:logicalTable [ rr:tableName "Department" ];
+    rr:subjectMap [
+        rr:template "http://example.org/Department/{department_id}" ;
+        rr:class ex:Department
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ex:department_id ;
+        rr:objectMap [ rr:column "department_id" ; rr:datatype xsd:integer ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ex:department_name ;
+        rr:objectMap [ rr:column "department_name" ; rr:datatype xsd:string ]
+    ] .
+
+# TriplesMap for the Employee table
+<#EmployeeTriplesMap>
+    rr:logicalTable [ rr:tableName "Employee" ];
+    rr:subjectMap [
+        rr:template "http://example.org/Employee/{employee_id}" ;
+        rr:class ex:Employee
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ex:employee_id ;
+        rr:objectMap [ rr:column "employee_id" ; rr:datatype xsd:integer ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ex:employee_name ;
+        rr:objectMap [ rr:column "employee_name" ; rr:datatype xsd:string ]
+    ];
+    # Representing the foreign key relationship
+    rr:predicateObjectMap [
+        rr:predicate ex:worksIn ;
+        rr:objectMap [ 
+            rr:parentTriplesMap <#DepartmentTriplesMap> ;
+            rr:joinCondition [
+                rr:child "department_id" ;
+                rr:parent "department_id"
+            ]
+        ]
+    ] .
+
