@@ -1,4 +1,4 @@
-# From Natural Language to SQL: A Model-Driven and RDF-Based Framework Empowered by Large Language Models
+#  Intelligent Reporting: RDF-based Modeling and LLM-Powered Report Generation from Relational Databases
 
 This project aims to develop a solution based on MDE and LLMs for automatically generating reports from relational databases. The core idea is to allow users to provide high-level, human-readable descriptions to the MDE component, which will then automatically connect to the target database, generate appropriate SQL queries, and return the results.
 
